@@ -1,0 +1,701 @@
+/* style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', system-ui, 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Remove scrollbar completely and make fullscreen */
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hide scrollbar for all elements */
+::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* PREMIUM IMAGE-LIKE ANIMATED BACKGROUND */
+.premium-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+}
+
+/* Floating gradient orbs - creates depth like a digital painting */
+.gradient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: floatOrb 20s infinite ease-in-out;
+}
+
+.orb-1 {
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(255, 71, 126, 0.8), rgba(255, 154, 0, 0.4));
+    top: -20vh;
+    left: -20vw;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(0, 255, 200, 0.7), rgba(0, 100, 255, 0.5));
+    bottom: -15vh;
+    right: -15vw;
+    animation-delay: 5s;
+}
+
+.orb-3 {
+    width: 45vw;
+    height: 45vw;
+    background: radial-gradient(circle, rgba(255, 0, 200, 0.6), rgba(138, 43, 226, 0.5));
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: 2s;
+    animation-duration: 25s;
+}
+
+.orb-4 {
+    width: 35vw;
+    height: 35vw;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.7), rgba(255, 69, 0, 0.5));
+    bottom: 10%;
+    left: 10%;
+    animation-delay: 10s;
+    animation-duration: 18s;
+}
+
+@keyframes floatOrb {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(5%, 5%) scale(1.1);
+    }
+    66% {
+        transform: translate(-3%, 8%) scale(0.95);
+    }
+}
+
+/* Noise overlay for texture (film grain effect) */
+.noise-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+/* Particle animation */
+.particle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255,255,255,0.8), rgba(255,255,255,0));
+    border-radius: 50%;
+    animation: particleFloat linear infinite;
+    pointer-events: none;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-20vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Main card - Premium glass morphism - fits perfectly without scroll */
+.age-card {
+    max-width: 720px;
+    width: 100%;
+    max-height: 95vh;
+    background: rgba(15, 12, 41, 0.45);
+    backdrop-filter: blur(16px);
+    border-radius: 2.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15);
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    animation: cardGlow 3s infinite alternate;
+}
+
+@keyframes cardGlow {
+    0% {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15);
+    }
+    100% {
+        box-shadow: 0 25px 60px -8px rgba(255, 107, 107, 0.3), 0 0 0 2px rgba(255, 179, 71, 0.3);
+    }
+}
+
+/* Enhanced hover effect for age-card */
+.age-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 35px 65px -15px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(255, 179, 71, 0.5);
+    backdrop-filter: blur(20px);
+    background: rgba(15, 12, 41, 0.55);
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+/* Custom scrollbar hidden */
+.age-card::-webkit-scrollbar {
+    display: none;
+}
+
+/* Header with elegant glow */
+.header {
+    position: relative;
+    padding: 1.5rem 2rem;
+    color: white;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3));
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.age-card:hover .header {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+}
+
+.header-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    animation: headerPulse 8s infinite;
+}
+
+.age-card:hover .header-glow {
+    background: radial-gradient(circle, rgba(255,179,71,0.15) 0%, transparent 70%);
+    animation: headerPulse 3s infinite;
+}
+
+@keyframes headerPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+.header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #fff, #ffd6a5, #ffb347);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.age-card:hover .header h1 {
+    background: linear-gradient(135deg, #fff, #ffe0b5, #ffc46b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    transform: scale(1.02);
+}
+
+.header p {
+    margin-top: 0.4rem;
+    opacity: 0.9;
+    font-weight: 400;
+    font-size: 0.85rem;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.age-card:hover .header p {
+    opacity: 1;
+    letter-spacing: 0.3px;
+}
+
+/* content area */
+.content {
+    padding: 1.5rem 2rem 1rem 2rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+/* input group */
+.dob-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    justify-content: space-between;
+}
+
+.input-field {
+    flex: 1;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.input-field label {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.age-card:hover .input-field label {
+    color: #ffb347;
+    letter-spacing: 1.5px;
+}
+
+.input-field input {
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    font-weight: 600;
+    text-align: center;
+    outline: none;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.input-field input::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+.input-field input:focus {
+    border-color: #ffb347;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 0 3px rgba(255, 179, 71, 0.3), 0 4px 12px rgba(0,0,0,0.2);
+    transform: scale(1.02);
+}
+
+.age-card:hover .input-field input {
+    border-color: rgba(255, 179, 71, 0.5);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Stunning button */
+.calc-btn {
+    position: relative;
+    width: 100%;
+    background: linear-gradient(135deg, #ff6b6b, #ff8e53, #ff6b6b);
+    background-size: 200% 200%;
+    border: none;
+    padding: 0.85rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    border-radius: 3rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s;
+}
+
+.calc-btn:hover .btn-glow {
+    left: 100%;
+}
+
+.calc-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+}
+
+.calc-btn:active {
+    transform: translateY(2px);
+}
+
+.age-card:hover .calc-btn {
+    animation: gradientShift 2s ease infinite;
+    transform: scale(1.01);
+}
+
+/* Result area - premium glass */
+.result-area {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 1.5rem;
+    padding: 1.2rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.age-card:hover .result-area {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 179, 71, 0.4);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.age-digits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 0.8rem;
+    margin: 0.3rem 0 0.3rem;
+}
+
+.age-stat {
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+    padding: 0.8rem 0.5rem;
+    border-radius: 1.2rem;
+    min-width: 90px;
+    flex: 1;
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+}
+
+.age-stat:hover {
+    transform: translateY(-8px) scale(1.05);
+    background: rgba(0, 0, 0, 0.6);
+    border-color: #ffb347;
+    box-shadow: 0 10px 25px -8px rgba(255, 179, 71, 0.4);
+}
+
+.age-card:hover .age-stat {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.stat-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
+    transition: all 0.3s ease;
+}
+
+.age-stat:hover .stat-icon {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 8px rgba(255, 179, 71, 0.6));
+}
+
+.stat-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffd89b, #ffb347);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    line-height: 1.2;
+    transition: all 0.3s ease;
+}
+
+.age-stat:hover .stat-number {
+    background: linear-gradient(135deg, #ffe0b5, #ffc46b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    transform: scale(1.05);
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.age-stat:hover .stat-label {
+    color: #ffb347;
+    letter-spacing: 2px;
+}
+
+.extra-message {
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+    color: rgba(255, 245, 220, 0.95);
+    font-weight: 500;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 2rem;
+    padding: 0.5rem;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+.age-card:hover .extra-message {
+    background: rgba(0, 0, 0, 0.4);
+    color: rgba(255, 245, 220, 1);
+}
+
+.error-message {
+    margin-top: 0.8rem;
+    background: rgba(255, 70, 70, 0.85);
+    backdrop-filter: blur(8px);
+    color: white;
+    padding: 0.6rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-left: 4px solid #ffcc00;
+    transition: all 0.3s ease;
+}
+
+/* FOOTER - Professional Developer Credit Section */
+footer {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.8rem 1.5rem;
+    flex-shrink: 0;
+    margin-top: auto;
+    transition: all 0.3s ease;
+}
+
+.age-card:hover footer {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
+    border-top-color: rgba(255, 179, 71, 0.3);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    text-align: center;
+}
+
+.credit-text {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+}
+
+.age-card:hover .credit-text {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.heart {
+    display: inline-block;
+    animation: heartbeat 1.5s ease infinite;
+    margin-right: 4px;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.portfolio-link {
+    color: #ffb347;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 2px 6px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.portfolio-link i {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-link:hover {
+    color: #ffd89b;
+    background: rgba(255, 179, 71, 0.2);
+    text-shadow: 0 0 8px rgba(255, 179, 71, 0.5);
+    transform: translateX(3px);
+}
+
+.portfolio-link:hover i {
+    transform: translateX(3px);
+}
+
+.age-card:hover .portfolio-link {
+    color: #ffc46b;
+}
+
+.footer-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+.separator {
+    opacity: 0.5;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.2rem;
+}
+
+.social-links a {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s;
+}
+
+.social-links a:hover {
+    color: #ffb347;
+    background: rgba(255, 179, 71, 0.2);
+    transform: translateY(-3px) scale(1.1);
+}
+
+.age-card:hover .social-links a {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 550px) {
+    body {
+        padding: 0.8rem;
+    }
+    .content {
+        padding: 1rem 1.2rem 0.8rem 1.2rem;
+    }
+    .stat-number {
+        font-size: 1.6rem;
+    }
+    .age-stat {
+        padding: 0.6rem;
+        min-width: 70px;
+    }
+    .header h1 {
+        font-size: 1.4rem;
+    }
+    .header p {
+        font-size: 0.7rem;
+    }
+    .footer-details {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+    .separator {
+        display: none;
+    }
+    .footer-content {
+        gap: 0.4rem;
+    }
+    .header {
+        padding: 1rem 1.2rem;
+    }
+    .calc-btn {
+        padding: 0.7rem;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    .result-area {
+        padding: 1rem;
+    }
+    .age-digits {
+        gap: 0.5rem;
+    }
+    .social-links a {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+    .age-stat:hover {
+        transform: translateY(-5px) scale(1.03);
+    }
+}
