@@ -16,7 +16,7 @@ A beautiful, fullscreen web app that calculates your exact age in years, months,
 
 ## 🚀 Live Demo
 
-[View Demo](https://your-username.github.io/age-calculator)
+[View Demo](https://sol-age-calculator.netlify.app)
 
 ## 🛠️ Tech Stack
 
